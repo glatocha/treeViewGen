@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <!-- <link rel="shortcut icon" href="favicon.png" type="image/x-icon"> -->
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <link rel="stylesheet" href="css/treeStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Tree View</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <h1>Default tree view</h1> -->
+        <div class="left-nav">
+            <i title="New Tree" id="navNewBtn" class="fas fa-file"></i>
+            <hr>
+            <i title="Save..." id="navSaveBtn" class="fas fa-save"></i>
+            <i title="Open..." id="navOpenBtn" class="fas fa-folder-open"></i>
+            <hr>
+            <!-- <i title="Share link..." id="navShareBtn" class="fas fa-share-square"></i>
+            <hr> -->
+            <i title="Upload from file" id="navUploadBtn" class="fas fa-file-upload"></i>
+            <input type="file" name="" id="navUploadAnch" accept=".json" class="hide">
+            <i title="Download JSON" id="navDownloadBtn" class="fas fa-file-download"></i>
+            <a id="navDownloadAnch"></a>
+            <hr>
+            <i title="Settings" id="settingsBtn" class="fas fa-sliders-h"></i>
+            <hr>
+            <i title="Project info and credits" id="navInfoBtn" class="fas fa-question-circle"></i>
+            <hr>
+            <span class="warning-section hide" id="warningSection">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Not saved modifications</p>
+            </span>
+        </div>
+        <div class="central-panel">
+            <div class="top-header">
+                <h5 class="file-name" id="file-name">...new file...</h5>
+            </div>
+            <ul class="tree-container" id="tree_container">
+
+            </ul>
+        </div>
+        <div class="right-panel">
+
+        </div>
+    </div>
+
+    <!-- MODAL 1 - Files to Load... -->
+    <div class="modal-background hide" id="modalBackground"></div>
+    <div class="modal hide" id="loadingFilesSelectModal">
+        <i title="close window" class="closeWindow fas fa-times"></i>
+        <h3>Possible files to select</h3>
+        <ul id="listOfFilesToLoad">
+
+        </ul>
+        <form>
+            <label for="filesToSelect">file to load:</label>
+            <input type="text" id="filesToSelect">
+            <button class="btn" id="modal_loadFileBtn">Load file</button>
+        </form>
+    </div>
+    <!-- END OF MODAL 1 - Files to Load... -->
+
+
+    <!-- MODAL 2 - Editing tree item... -->
+    <div class="modal hide" id="editTreeItemModal">
+        <i title="close window" class="closeWindow fas fa-times"></i>
+        <div class="colorPickerAll" id="editModalColorPickerAll">
+            <div class="colorPicker-tray" id="editModalColorPickerTray">
+                <div class="colorPickerTemplate" id="editModalColorTempl1"></div>
+                <div class="colorPickerTemplate" id="editModalColorTempl2"></div>
+                <div class="colorPickerTemplate" id="editModalColorTempl3"></div>
+                <div class="colorPickerTemplate" id="editModalColorTempl4"></div>
+                <div class="colorPickerTemplate" id="editModalColorTempl5"></div>
+                <div class="colorPickerTemplate" id="editModalColorTempl6"></div>
+            </div>
+            <div class="colorPicker-wrapper" id="editModalColorPickerWrapper">
+                <input type="color" name="itemColor" class='colorPicker' id="editModalColorPicker">
+            </div>
+        </div>
+        <h3>Edit tree item</h3>
+        <form>
+            <div>
+                <label for="editModalItemTitle">Item title:</label>
+                <input type="text" id="editModalItemTitle">
+            </div>
+            <div>
+                <label for="editModalItemDescr">Descr:</label>
+                <input type="text" id="editModalItemDescr"><br>
+            </div>
+            <label for="editModalItemNotes">Notes:</label>
+            <textarea name="itemNotes" id="editModalItemNotes"></textarea>
+            <div class="flags">
+                <div>
+                    <input type="checkbox" id="cbFlag1">
+                    <label for="cbFlag1"><i class="fas fa-female"></i>Female</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cbFlag2">
+                    <label for="cbFlag2"><i class="fas fa-female"></i>Female</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cbFlag3">
+                    <label for="cbFlag3"><i class="fas fa-female"></i>Female</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cbFlag4">
+                    <label for="cbFlag4"><i class="fas fa-female"></i>Female</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cbFlag5">
+                    <label for="cbFlag5"><i class="fas fa-female"></i>Female</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cbFlag6">
+                    <label for="cbFlag6"><i class="fas fa-female"></i>Female</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cbFlag7">
+                    <label for="cbFlag7"><i class="fas fa-female"></i>Female</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cbFlag8">
+                    <label for="cbFlag8"><i class="fas fa-female"></i>Female</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cbFlag9">
+                    <label for="cbFlag9"><i class="fas fa-female"></i>Female</label>
+                </div>
+            </div>
+            <button class="btn" id="editModal_UpdateBtn">Update</button>
+        </form>
+    </div>
+    <!-- END OF MODAL 2 - Editing tree item... -->
+
+    <!-- MODAL 3 - Project settings... -->
+    <div class="modal hide" id="projectSettingsModal">
+        <i title="close window" class="closeWindow fas fa-times"></i>
+        <h3>Project settings</h3>
+        <div class="colorPickerAll" id="projtctSettingsPickerAll">
+            <div class="colorPicker-wrapper">
+                <input type="color" name="itemColor" class='colorPicker'>
+            </div>
+            <div class="colorPicker-wrapper">
+                <input type="color" name="itemColor" class='colorPicker'>
+            </div>
+            <div class="colorPicker-wrapper">
+                <input type="color" name="itemColor" class='colorPicker'>
+            </div>
+            <div class="colorPicker-wrapper">
+                <input type="color" name="itemColor" class='colorPicker'>
+            </div>
+            <div class="colorPicker-wrapper">
+                <input type="color" name="itemColor" class='colorPicker'>
+            </div>
+            <div class="colorPicker-wrapper">
+                <input type="color" name="itemColor" class='colorPicker'>
+            </div>
+        </div>
+        <form>
+            <h5>Custom tags</h5>
+            <table>
+                <thead>
+                    <th>icon</th>
+                    <th>text</th>
+                    <th>html for icon -> <a href="https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free"
+                            target="_blank" rel="noopener noreferrer">FontAwesome</a></th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="fas fa-bullseye"></i></td>
+                        <td><input type="text" class="projectSettingsTagName" value="Notes exists"></td>
+                        <td><input type="text" class="projectSettingsTagHTML" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-bullseye"></i></td>
+                        <td><input type="text" class="projectSettingsTagName" value="Notes exists"></td>
+                        <td><input type="text" class="projectSettingsTagHTML" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-bullseye"></i></td>
+                        <td><input type="text" class="projectSettingsTagName" value="Notes exists"></td>
+                        <td><input type="text" class="projectSettingsTagHTML" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-bullseye"></i></td>
+                        <td><input type="text" class="projectSettingsTagName" value="Notes exists"></td>
+                        <td><input type="text" class="projectSettingsTagHTML" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-bullseye"></i></td>
+                        <td><input type="text" class="projectSettingsTagName" value="Notes exists"></td>
+                        <td><input type="text" class="projectSettingsTagHTML" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-bullseye"></i></td>
+                        <td><input type="text" class="projectSettingsTagName" value="Notes exists"></td>
+                        <td><input type="text" class="projectSettingsTagHTML" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-bullseye"></i></td>
+                        <td><input type="text" class="projectSettingsTagName" value="Notes exists"></td>
+                        <td><input type="text" class="projectSettingsTagHTML" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-bullseye"></i></td>
+                        <td><input type="text" class="projectSettingsTagName" value="Notes exists"></td>
+                        <td><input type="text" class="projectSettingsTagHTML" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-bullseye"></i></td>
+                        <td><input type="text" class="projectSettingsTagName" value="Notes exists"></td>
+                        <td><input type="text" class="projectSettingsTagHTML" value=""></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <div>
+                <label for="editModalItemTitle">Item title:</label>
+                <input type="text" id="editModalItemTitle">
+            </div>
+            <div>
+                <label for="editModalItemDescr">Descr:</label>
+                <input type="text" id="editModalItemDescr"><br>
+            </div>
+            <label for="editModalItemNotes">Notes:</label>
+            <textarea name="itemNotes" id="editModalItemNotes"></textarea> -->
+            <button class="btn" id="projectSetting_UpdateBtn">Update</button>
+        </form>
+    </div>
+    <!-- END OF MODAL 3 - Project settings... -->
+
+    <!-- MODAL 4 - Info page... -->
+    <div class="modal hide" id="infoModal">
+        <i title="close window" class="closeWindow fas fa-times"></i>
+        <h3>Project info</h3>
+        <p>At first, this project does not use any cookies. This project does not collect any data from your computer,
+            does not store any data on any servers and in fact, it can be copied locally and used fully in offline mode.
+            Just download the page using your browser "Save as.." or download from GitHub link below.
+        </p>
+        <p>
+            This project was made for fast and easy tree graphs creation. The goal was that it is fast, simple and easy
+            to share with others.
+        </p>
+        <p>
+            Due to the browser based solution, this project does not have access to the user file system. Therefore easy
+            and fast saving is not possible (and not safe). Project uses browser local storage for storing the data.
+            This is faster than downloading files after every modification. I would strongly recomend downloading the
+            project file after every session.
+        </p>
+        <p>
+            The project is fully open source, so feel free to copy, modify and use as you please. If you, however, want
+            to publish it somewhere, please mainain the link to the original author's repository.
+        </p>
+        <hr>
+        <h5>Useful links:</h5>
+        <ul>
+            <li><i class="fas fa-link"></i><a href="http://" target="_blank">Project repository on GitHub</a></li>
+            <li><i class="fas fa-link"></i><a href="https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free"
+                    target="_blank">FontAwesome for custom flags reference</a></li>
+            <li><i class="fas fa-link"></i><a href="https://www.linkedin.com/in/grzegorz-latocha/"
+                    target="_blank">Author's LinkedIn page</a></li>
+            <li><i class="fas fa-link"></i><a href="http://www.glatocha.com" target="_blank">Author's website</a>
+            </li>
+        </ul>
+        <hr>
+        <small>Copyrigths - &copy;Grzegorz Latocha @2021 - <a
+                href="mailto:glatocha@gmail.com">glatocha@gmail.com</a></small>
+    </div>
+    <!-- END OF MODAL 4 - Files to Load... -->
+
+    <!-- MODAL 5 - Theme settings... -->
+    <div class="modal hide" id="themeSettingsModal">
+        <i title="close window" class="closeWindow fas fa-times"></i>
+        <h3>Theme settings</h3>
+        <div class="colorPickerAll" id="themeSettingsPickerAll">
+            <div class="themeColor">
+                <div class="colorPicker-wrapper">
+                    <input type="color" name="itemColor" id="thSetBGColor" class='colorPicker'>
+                </div>
+                <label for="thSetBGColor">Backgound color</label>
+                <i></i>
+            </div>
+            <div class="themeColor">
+                <div class="colorPicker-wrapper">
+                    <input type="color" name="itemColor" id="thSetPrimColor" class='colorPicker'>
+                </div>
+                <label for="thSetPrimColor">Primary color</label>
+                <i></i>
+            </div>
+            <div class="themeColor">
+                <div class="colorPicker-wrapper">
+                    <input type="color" name="itemColor" id="thSetSeColor" class='colorPicker'>
+                </div>
+                <label for="thSetSEColor">Secondary color</label>
+                <i></i>
+            </div>
+            <div class="themeColor">
+                <div class="colorPicker-wrapper">
+                    <input type="color" name="itemColor" id="thSetTLColor" class='colorPicker'>
+                </div>
+                <label for="thSetTLColor">Tree Lines color</label>
+                <i></i>
+            </div>
+            <div class="themeColor">
+                <div class="colorPicker-wrapper">
+                    <input type="color" name="itemColor" id="thSetNavBGColor" class='colorPicker'>
+                </div>
+                <label for="thSetNavBGColor">Navigation bar color</label>
+                <i></i>
+            </div>
+            <div class="themeColor">
+                <div class="colorPicker-wrapper">
+                    <input type="color" name="itemColor" id="thSetNavColor" class='colorPicker'>
+                </div>
+                <label for="thSetNavColor">Navigation icons color</label>
+                <i></i>
+            </div>
+            <div class="themeColor">
+                <div class="colorPicker-wrapper">
+                    <input type="color" name="itemColor" id="thSetFlagColor" class='colorPicker'>
+                </div>
+                <label for="thSetFlagColor">Flags icons color</label>
+                <i></i>
+            </div>
+        </div>
+        <form>
+            <button class="btn" id="themeSetting_UpdateBtn">Update</button>
+        </form>
+    </div>
+    <!-- END OF MODAL 5 - Theme settings... -->
+
+
+    <script src="def_tree.js"></script>
+    <script src="tree.js"></script>
+    <script src="ui.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

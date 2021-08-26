@@ -1,0 +1,230 @@
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap');
+
+@use 'style';
+
+@mixin tree-ul {
+    list-style-type: none;
+    margin: 0px 0px 0px 30px;
+    padding: 0;
+    position: relative;    
+}
+
+.tree-container {
+    margin: 40px 00px 200px 90px;
+    list-style-type: none;
+    padding: 0;
+    position: relative;
+
+    ul {
+        @include tree-ul;
+    }
+}
+
+.tree-master ul,
+.tree-item ul {
+    @include tree-ul;
+    // styling the tree branch horizontal line and rounded
+    .tree-item-label::before {
+        position: absolute;
+        content: '';
+        width: 15px;
+        border-left: var(--tree-lines-color) 1px solid;
+        border-bottom: var(--tree-lines-color) 1px solid;
+        left: -15px;
+        height: 10px;
+        border-bottom-left-radius: 5px;
+        top: 0px;
+        z-index: -1;
+    }
+}
+
+
+.tree-parent {
+    // styling the tree branch vertical lines
+    ul > li {
+        position: relative;
+        
+        &::before{
+            position: absolute;
+            content: '';
+            height: calc(100% + 5px);
+            border-left: var(--tree-lines-color) 1px solid;
+            left: -14px;
+            top: -5px;
+            z-index: -1;
+        }
+        
+        /* last item line does not go all the way down */
+        &:last-child:before {
+            height: 13px;
+        }
+    }
+    
+    &.collapsed {
+        > .tree-item-label > .extra-buttons > i.fa-folder-minus {
+                display: none;    
+        }
+
+        > ul {
+            display: none;
+        }       
+    }
+    
+    &:not(.collapsed) > .tree-item-label > .extra-buttons > i.fa-folder-plus {
+        display: none;
+    }
+
+}
+
+.tree-item-label {
+    border: var(--secondary-color) 1px solid;
+    padding: 0;
+    margin: 5px 0px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    min-width: 100px;
+    max-width: 300px;
+    width: 220px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    // &:focus {
+    //     outline: black auto 1px;
+    // }
+
+    &.ob {
+        background-color: var(--OB-color);
+        color: black;
+    }
+    &.fb {
+        background-color: var(--FB-color);
+        color: black;
+    }
+    &.fc {
+        background-color: var(--FC-color);
+        color: black;
+    }
+
+    input {
+        font-family: inherit;
+        padding: 0px;
+
+        &:focus {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        &.item-title {
+            background-color: none;
+            background: none;
+            border: none;
+            width: calc(100% - 10px);
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 3px 5px 0px;
+        }
+
+        &.item-description {
+            background-color: none;
+            background: none;
+            border: none;
+            width: calc(100% - 10px);
+            font-weight: 300;
+            font-size: 0.7rem;
+            text-align: left;
+            margin: 2px 5px 0px;
+            word-break: break-word;     
+        }
+    }
+
+    .extra-buttons {
+        border-top: 1px solid var(--secondary-color);
+        padding: 2px 5px;
+        /* display: flex; */
+        align-items: center;
+        justify-content: space-between;
+        line-height: 0.7rem;
+        font-size: 0.9rem;
+        position: relative;
+        height: 1rem;
+
+        span {
+            position: absolute;
+            right: 5px;
+            margin-left: auto;
+        }
+
+        i {
+            width: 15px;
+            text-align: center;
+        }
+
+        .expandBtn,
+        .collapseBtn {
+            margin-top: 2px;
+        }
+
+        .editBtn {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);            
+        }
+        
+        i {
+            cursor: pointer;
+        }
+    }
+    
+    .flags {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        position: absolute;
+        background: none;
+        margin-left: 5px;
+        left: 100%;
+        max-height: 100%;
+        top: 0%;
+        color: var(--flags-color);
+
+        div {
+            display: flex;
+            max-height: 33%;
+            margin: 2px;
+            align-items: center;
+            justify-content: center;
+        }
+        i {
+            margin: 2px;
+            font-size: 0.9rem;
+        }
+
+        div:nth-child(1):nth-last-child(2),
+        div:nth-child(2):nth-last-child(1) {
+            i {
+                font-size: 1.5rem;
+            }
+        }        
+        div:only-child {
+            i {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+
+.tree-master:not(.tree-parent) .expandBtn, 
+.tree-master:not(.tree-parent) .collapseBtn, 
+.tree-item:not(.tree-parent) .expandBtn, 
+.tree-item:not(.tree-parent) .collapseBtn {
+    display: none;
+}
+
+.tree-master > .tree-item-label > .extra-buttons  .addSiblingBtn,
+.tree-master > .tree-item-label > .extra-buttons  .removeBtn {
+    display: none;
+}
+
+

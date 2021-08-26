@@ -1,0 +1,748 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap");
+:root {
+  --background-color: #3d3d3d;
+  --primary-color: #c2fff3;
+  --secondary-color: #787878;
+  --tree-lines-color: #ffffff;
+  --menu-bgColor: #292929;
+  --nav-iconColor: #c2c2c2;
+  --flags-color: #ffffff;
+  --FC-color: #ffc6aa;
+  --FB-color: #c8eabf;
+  --OB-color: #6cafaf;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--background-color);
+  color: black;
+  margin: 0;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.left-nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 70px;
+  height: 100vh;
+  background-color: var(--menu-bgColor);
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px 0px;
+  color: var(--nav-iconColor);
+}
+.left-nav .warning-section {
+  position: absolute;
+  top: auto;
+  bottom: 15px;
+  text-align: center;
+  color: orange;
+}
+.left-nav .warning-section p {
+  font-size: 0.5rem;
+  color: var(--nav-iconColor);
+}
+.left-nav .warning-section.hide {
+  display: none;
+}
+.left-nav i {
+  margin: 10px 0px;
+  font-size: 45px;
+  text-align: center;
+}
+.left-nav > i {
+  cursor: pointer;
+}
+.left-nav > i:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: scale 0.3s ease-in;
+  transition: scale 0.3s ease-in;
+}
+.left-nav hr {
+  color: violet;
+  width: 100%;
+}
+
+.central-panel {
+  width: 100%;
+  position: relative;
+}
+
+.top-header {
+  position: fixed;
+  top: 0px;
+  left: 70px;
+  width: calc(100% - 70px);
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  color: #ddd;
+}
+.top-header.stickToTop {
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #ddd;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.modal {
+  position: fixed;
+  border: 2px #777 solid;
+  background-color: #ddd;
+  /* background-color: #eee; */
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 101;
+}
+.modal input {
+  font-family: inherit;
+  border: 1px solid #777;
+  border-radius: 5px;
+  background-color: #eee;
+  padding-left: 5px;
+}
+.modal button {
+  font-family: inherit;
+  border: 1px solid #777;
+  border-radius: 5px;
+  background-color: #eee;
+  outline: none;
+  -webkit-box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  max-width: 100px;
+  margin-top: 10px;
+}
+.modal button:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition: scale 0.3 ease-in;
+  transition: scale 0.3 ease-in;
+}
+.modal .closeWindow {
+  position: fixed;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
+.modal .closeWindow:hover {
+  font-size: 1.1rem;
+}
+
+#loadingFilesSelectModal {
+  width: 350px;
+  /* height: 200px; */
+  text-align: center;
+  padding-bottom: 20px;
+}
+#loadingFilesSelectModal li {
+  cursor: pointer;
+  text-align: left;
+}
+
+#editTreeItemModal {
+  width: 350px;
+  text-align: center;
+  padding-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#editTreeItemModal.hide {
+  display: none;
+}
+#editTreeItemModal form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#editTreeItemModal form > div {
+  margin-bottom: 10px;
+}
+#editTreeItemModal #editModalItemDescr {
+  width: 260px;
+}
+#editTreeItemModal textarea {
+  width: 90%;
+  resize: vertical;
+  min-height: 200px;
+  background-color: #eee;
+}
+#editTreeItemModal .flags {
+  padding: 0px 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 0;
+}
+#editTreeItemModal .flags > * {
+  width: 33%;
+  max-width: 33%;
+  text-align: left;
+  white-space: nowrap;
+}
+#editTreeItemModal .flags label {
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+#editTreeItemModal .flags label i {
+  margin-right: 4px;
+  font-size: 0.9rem;
+}
+#editTreeItemModal .colorPicker-wrapper {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: #9dc7ca;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px #777 solid;
+  z-index: 110;
+}
+#editTreeItemModal .colorPicker-wrapper .colorPicker {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  padding: 0;
+  border-radius: 20px;
+  opacity: 0;
+  z-index: 111;
+}
+#editTreeItemModal .colorPicker-tray {
+  top: 11px;
+  left: 20px;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 135px;
+  height: 19px;
+  border: 1px solid #777;
+  border-radius: 0px 15px 15px 0px;
+  padding-left: 11px;
+  background-color: #ddd;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  z-index: 109;
+}
+#editTreeItemModal .colorPicker-tray.show {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+#editTreeItemModal .colorPicker-tray .colorPickerTemplate {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #777;
+  background: pink;
+  padding: 0;
+  border-radius: 15px;
+  margin: 2px;
+  cursor: pointer;
+}
+#editTreeItemModal .colorPicker-tray .colorPickerTemplate:hover {
+  border: 1px solid black;
+}
+
+#projectSettingsModal {
+  width: 350px;
+  text-align: center;
+  padding-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#projectSettingsModal form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#projectSettingsModal form > div {
+  margin-bottom: 10px;
+}
+#projectSettingsModal.hide {
+  display: none;
+}
+#projectSettingsModal .colorPickerAll {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 250px;
+  height: 36px;
+  padding: 4px 4px;
+  border: 1px solid #777;
+  border-radius: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+#projectSettingsModal .colorPickerAll .colorPicker-wrapper {
+  background-color: #9dc7ca;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px #777 solid;
+  z-index: 110;
+}
+#projectSettingsModal .colorPickerAll .colorPicker-wrapper .colorPicker {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  padding: 0;
+  border-radius: 30px;
+  opacity: 0;
+  z-index: 111;
+}
+#projectSettingsModal h5 {
+  margin: 10px 0px 0px 0px;
+}
+#projectSettingsModal table {
+  font-size: 0.7rem;
+  width: 100%;
+  margin-top: 0;
+}
+#projectSettingsModal table tbody td:first-of-type {
+  font-size: 0.9rem;
+}
+#projectSettingsModal table tr {
+  margin: 0;
+  padding: 0;
+}
+#projectSettingsModal table .projectSettingsTagName {
+  width: 60px;
+  font-size: inherit;
+}
+#projectSettingsModal table .projectSettingsTagHTML {
+  width: 230px;
+  font-size: inherit;
+}
+
+#themeSettingsModal {
+  width: 350px;
+  text-align: center;
+  padding-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#themeSettingsModal form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#themeSettingsModal form > div {
+  margin-bottom: 10px;
+}
+#themeSettingsModal.hide {
+  display: none;
+}
+#themeSettingsModal .colorPickerAll {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+#themeSettingsModal .colorPickerAll .themeColor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 5px 0px;
+}
+#themeSettingsModal .colorPickerAll .themeColor label {
+  margin: 0px 10px;
+}
+#themeSettingsModal .colorPickerAll .colorPicker-wrapper {
+  background-color: #9dc7ca;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px #777 solid;
+  z-index: 110;
+}
+#themeSettingsModal .colorPickerAll .colorPicker-wrapper .colorPicker {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  padding: 0;
+  border-radius: 30px;
+  opacity: 0;
+  z-index: 111;
+}
+
+#infoModal {
+  width: 700px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 10px;
+  font-size: 0.9rem;
+}
+#infoModal.hide {
+  display: none;
+}
+#infoModal p {
+  padding: 10px 20px;
+  margin: 5px;
+  text-align: justify;
+}
+#infoModal hr {
+  width: 90%;
+}
+#infoModal h5 {
+  margin: 3px 0px;
+}
+#infoModal ul {
+  margin: 3px 0px;
+  list-style-type: none;
+}
+#infoModal ul i {
+  margin: 0px 5px;
+}
+#infoModal ul a {
+  text-decoration: underline;
+  color: black;
+}
+#infoModal ul li {
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.hide {
+  display: none;
+}
+
+.tree-container {
+  margin: 40px 0px 200px 90px;
+  list-style-type: none;
+  padding: 0;
+  position: relative;
+}
+.tree-container ul {
+  list-style-type: none;
+  margin: 0px 0px 0px 30px;
+  padding: 0;
+  position: relative;
+}
+
+.tree-master ul,
+.tree-item ul {
+  list-style-type: none;
+  margin: 0px 0px 0px 30px;
+  padding: 0;
+  position: relative;
+}
+.tree-master ul .tree-item-label::before,
+.tree-item ul .tree-item-label::before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  border-left: var(--tree-lines-color) 1px solid;
+  border-bottom: var(--tree-lines-color) 1px solid;
+  left: -15px;
+  height: 10px;
+  border-bottom-left-radius: 5px;
+  top: 0px;
+  z-index: -1;
+}
+
+.tree-parent ul > li {
+  position: relative;
+  /* last item line does not go all the way down */
+}
+.tree-parent ul > li::before {
+  position: absolute;
+  content: "";
+  height: calc(100% + 5px);
+  border-left: var(--tree-lines-color) 1px solid;
+  left: -14px;
+  top: -5px;
+  z-index: -1;
+}
+.tree-parent ul > li:last-child:before {
+  height: 13px;
+}
+.tree-parent.collapsed > .tree-item-label > .extra-buttons > i.fa-folder-minus {
+  display: none;
+}
+.tree-parent.collapsed > ul {
+  display: none;
+}
+.tree-parent:not(.collapsed) > .tree-item-label > .extra-buttons > i.fa-folder-plus {
+  display: none;
+}
+
+.tree-item-label {
+  border: var(--secondary-color) 1px solid;
+  padding: 0;
+  margin: 5px 0px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  min-width: 100px;
+  max-width: 300px;
+  width: 220px;
+  -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+.tree-item-label.ob {
+  background-color: var(--OB-color);
+  color: black;
+}
+.tree-item-label.fb {
+  background-color: var(--FB-color);
+  color: black;
+}
+.tree-item-label.fc {
+  background-color: var(--FC-color);
+  color: black;
+}
+.tree-item-label input {
+  font-family: inherit;
+  padding: 0px;
+}
+.tree-item-label input:focus {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.tree-item-label input.item-title {
+  background-color: none;
+  background: none;
+  border: none;
+  width: calc(100% - 10px);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 3px 5px 0px;
+}
+.tree-item-label input.item-description {
+  background-color: none;
+  background: none;
+  border: none;
+  width: calc(100% - 10px);
+  font-weight: 300;
+  font-size: 0.7rem;
+  text-align: left;
+  margin: 2px 5px 0px;
+  word-break: break-word;
+}
+.tree-item-label .extra-buttons {
+  border-top: 1px solid var(--secondary-color);
+  padding: 2px 5px;
+  /* display: flex; */
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  line-height: 0.7rem;
+  font-size: 0.9rem;
+  position: relative;
+  height: 1rem;
+}
+.tree-item-label .extra-buttons span {
+  position: absolute;
+  right: 5px;
+  margin-left: auto;
+}
+.tree-item-label .extra-buttons i {
+  width: 15px;
+  text-align: center;
+}
+.tree-item-label .extra-buttons .expandBtn,
+.tree-item-label .extra-buttons .collapseBtn {
+  margin-top: 2px;
+}
+.tree-item-label .extra-buttons .editBtn {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.tree-item-label .extra-buttons i {
+  cursor: pointer;
+}
+.tree-item-label .flags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  background: none;
+  margin-left: 5px;
+  left: 100%;
+  max-height: 100%;
+  top: 0%;
+  color: var(--flags-color);
+}
+.tree-item-label .flags div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-height: 33%;
+  margin: 2px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.tree-item-label .flags i {
+  margin: 2px;
+  font-size: 0.9rem;
+}
+.tree-item-label .flags div:nth-child(1):nth-last-child(2) i,
+.tree-item-label .flags div:nth-child(2):nth-last-child(1) i {
+  font-size: 1.5rem;
+}
+.tree-item-label .flags div:only-child i {
+  font-size: 1.5rem;
+}
+
+.tree-master:not(.tree-parent) .expandBtn,
+.tree-master:not(.tree-parent) .collapseBtn,
+.tree-item:not(.tree-parent) .expandBtn,
+.tree-item:not(.tree-parent) .collapseBtn {
+  display: none;
+}
+
+.tree-master > .tree-item-label > .extra-buttons .addSiblingBtn,
+.tree-master > .tree-item-label > .extra-buttons .removeBtn {
+  display: none;
+}/*# sourceMappingURL=treeStyle.css.map */

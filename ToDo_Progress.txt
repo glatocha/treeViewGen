@@ -1,0 +1,56 @@
+Files saved so far
+SprayCooling
+MoldCooling
+MachineCooling
+Johnny
+
+interesting icons to consider:
+<i class="fas fa-dna"></i>
+
+
+TODO
+copy CSS to clipboard from theme settings
+create the info page
+clean up js, split files? - 20%
+copying cutting, duplicating, selecting the node
+Add bootstrap for nav, modal etc. - ???
+Edit the name of the tree - CANCELLED
+Open as new tree - ??
+Right side Edit panel? or Modal
+notes section
+export to pdf?
+select item
+move item
+clone item
+one button to hide extra-buttons - for clarification
+printing, hide panels
+establish Git
+general theme editing - https://www.w3schools.com/css/css3_variables_javascript.asp
+convert everything to electron
+publish online
+
+DONE:
+saving project parameters - DONE
+favicon - DONE
+Collapse all children - DONE
+Expand all children - DONE
+add info page - DONE
+add flags - DONE
+download/upload from file - DONE
+popup with editable items - DONE
+copy parent color on creating childs - DONE
+saving and loading colors - DONE
+flags and global settings window - DONE
+flags saving with the project - DONE
+clean up css - change to sass - DONE
+display possible files to load - DONE
+Add extra icons: delete element - DONE
+                  : edit element - DONE
+                  : add child - DONE
+                  : add sibling - DONE
+Create some JSON structure for element, handle adding items - DONE
+Editable label and description - DONE
+remove the tree-parent class if all childs are gone - DONE
+Save, load to, from local storage - DONE
+not saved icon - DONE
+Left side menu - DONE

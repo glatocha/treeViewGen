@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap");
+:root {
+  --primary-color: #9dc7ca;
+  --secondary-color: #8080ff;
+  --FC-color: #ffc6aa;
+  --FB-color: #c8eabf;
+  --OB-color: #6cafaf;
+  --tree-lines-color: #777;
+  --menu-bgColor: #c7e4eb;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #e4d9d9;
+  color: black;
+  margin: 0;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.left-nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 70px;
+  height: 100vh;
+  background-color: var(--menu-bgColor);
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px 0px;
+}
+.left-nav .warning-section {
+  position: absolute;
+  top: auto;
+  bottom: 15px;
+  text-align: center;
+  color: orange;
+}
+.left-nav .warning-section p {
+  font-size: 0.5rem;
+  color: black;
+}
+.left-nav .warning-section.hide {
+  display: none;
+}
+.left-nav i {
+  margin: 10px 0px;
+  font-size: 45px;
+  text-align: center;
+}
+.left-nav > i {
+  cursor: pointer;
+}
+.left-nav > i:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: scale 0.3s ease-in;
+  transition: scale 0.3s ease-in;
+}
+.left-nav hr {
+  color: violet;
+  width: 100%;
+}
+
+.central-panel {
+  width: 100%;
+  position: relative;
+}
+
+.top-header {
+  position: fixed;
+  top: 0px;
+  left: 70px;
+  width: calc(100% - 70px);
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+.top-header.stickToTop {
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #ddd;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.modal {
+  position: fixed;
+  border: 2px #777 solid;
+  background-color: #ddd;
+  /* background-color: #eee; */
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 101;
+}
+.modal input {
+  font-family: inherit;
+  border: 1px solid #777;
+  border-radius: 5px;
+  background-color: #eee;
+  padding-left: 5px;
+}
+.modal button {
+  font-family: inherit;
+  border: 1px solid #777;
+  border-radius: 5px;
+  background-color: #eee;
+  outline: none;
+  -webkit-box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  max-width: 100px;
+}
+.modal button:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition: scale 0.3 ease-in;
+  transition: scale 0.3 ease-in;
+}
+.modal .closeWindow {
+  position: fixed;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
+.modal .closeWindow:hover {
+  font-size: 1.1rem;
+}
+
+#loadingFilesSelectModal {
+  width: 350px;
+  /* height: 200px; */
+  text-align: center;
+  padding-bottom: 20px;
+}
+#loadingFilesSelectModal li {
+  cursor: pointer;
+  text-align: left;
+}
+
+#editTreeItemModal {
+  width: 350px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+#editTreeItemModal form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#editTreeItemModal form > div {
+  margin-bottom: 10px;
+}
+#editTreeItemModal #editModalItemDescr {
+  width: 260px;
+}
+#editTreeItemModal textarea {
+  width: 90%;
+  resize: vertical;
+  min-height: 200px;
+  margin-bottom: 10px;
+  background-color: #eee;
+}
+
+.hide {
+  display: none;
+}/*# sourceMappingURL=style.css.map */

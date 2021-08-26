@@ -1,0 +1,507 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap');
+
+:root {
+
+    --background-color: #3d3d3d;
+    --primary-color: #c2fff3;
+    --secondary-color: #787878;
+    --tree-lines-color: #ffffff;
+    --menu-bgColor: #292929;
+    --nav-iconColor: #c2c2c2;
+    --flags-color: #ffffff;
+    // --primary-color: #9dc7ca;
+    // --secondary-color: #4682b4;
+    // --background-color: #e6dddd;
+    // --tree-lines-color: #777777;
+    // --menu-bgColor: #c7e4eb;
+    // --nav-iconColor: #000000;
+    // --flags-color: #000000;
+    --FC-color: #ffc6aa;
+    --FB-color: #c8eabf;
+    --OB-color: #6cafaf;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: black;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+}
+
+.left-nav {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 70px;
+    height: 100vh;
+    background-color: var(--menu-bgColor);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 0px;
+    color: var(--nav-iconColor);
+    
+    .warning-section {
+        position: absolute;
+        top: auto;
+        bottom: 15px;
+        text-align: center;
+        color: orange;
+        
+        p {
+            font-size: 0.5rem;
+            color: var(--nav-iconColor);
+        }
+
+        &.hide {
+            display: none;
+        }
+    }
+
+    i {
+        margin: 10px 0px;
+        font-size: 45px;
+        text-align: center;
+    }
+
+    > i {
+        cursor: pointer;
+    }
+
+    > i:hover {
+        transform: scale(1.1);
+        transition: scale 0.3s ease-in;
+    }
+
+    hr {
+        color: violet;
+        width: 100%;
+    }
+}
+
+.central-panel {
+    width: 100%;
+    position: relative;
+}
+
+.top-header {
+    position: fixed;
+    top: 0px;
+    left: 70px;
+    width: calc(100% - 70px);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    color: #ddd;
+
+    &.stickToTop {
+        background-color: rgba(51, 51, 51, 0.9);
+        color: #ddd;
+    }
+}
+
+
+.modal-background {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.modal {
+    position: fixed;
+    border: 2px #777 solid;
+    background-color: #ddd;
+    /* background-color: #eee; */
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+
+    input {
+        font-family: inherit;
+        border: 1px solid #777;
+        border-radius: 5px;
+        background-color: #eee;
+        padding-left: 5px;
+    }
+    
+    button {
+        font-family: inherit;
+        border: 1px solid #777;
+        border-radius: 5px;
+        background-color: #eee;
+        outline: none;
+        box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        max-width: 100px;
+        margin-top: 10px;
+
+        &:hover {
+            transform: scale(1.03);
+            transition: scale 0.3 ease-in;
+        }
+    }
+    
+    .closeWindow {
+        position: fixed;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+
+        &:hover {
+            font-size: 1.1rem;
+        }
+    }
+}
+
+
+#loadingFilesSelectModal {
+    width: 350px;
+    /* height: 200px; */
+    text-align: center;
+    padding-bottom: 20px;
+
+    li {
+        cursor: pointer;
+        text-align: left;
+    }
+}
+
+
+#editTreeItemModal {
+    width: 350px;
+    text-align: center;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &.hide {
+        display: none;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        > div {
+            margin-bottom: 10px;
+        }
+    }
+    
+    #editModalItemDescr {
+        width: 260px;
+    }
+
+    textarea {
+        width: 90%;
+        resize: vertical;
+        min-height: 200px;
+        // margin-bottom: 10px;
+        background-color: #eee;
+    }
+
+    .flags {
+        padding: 0px 3%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        > * {
+            width: 33%;
+            max-width: 33%;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        label {
+            font-size: 0.7rem;
+            cursor: pointer;
+            i {
+                margin-right: 4px;
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    .colorPicker-wrapper {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background-color: #9dc7ca;
+        $size: 20px;
+        height: $size;
+        width: $size;
+        border-radius: 50%;
+        border: 1px #777 solid;
+        z-index: 110;
+        .colorPicker {
+            width: $size;
+            height: $size;
+            border: none;
+            background: none;
+            padding: 0;
+            border-radius: $size;
+            opacity: 0;
+            z-index: 111;
+        }
+    }
+
+    .colorPicker-tray {
+        top: 11px;
+        left: 20px;
+        position: fixed;
+        $size: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: $size*9;
+        height: $size + 4px;
+        border: 1px solid #777;
+        border-radius: 0px $size $size 0px;
+        padding-left: 11px;
+        background-color: #ddd;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: all 0.2s ease-in; 
+        z-index: 109;
+        &.show {
+            transform: scaleX(1);
+        }
+        .colorPickerTemplate {
+            width: $size;
+            height: $size;
+            border: 1px solid #777;
+            background: pink;
+            padding: 0;
+            border-radius: $size;
+            margin: 2px;
+            cursor: pointer;
+
+            &:hover {
+                border: 1px solid black;
+            }
+        }
+    }
+}
+
+#projectSettingsModal {
+    width: 350px;
+    text-align: center;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        > div {
+            margin-bottom: 10px;
+        }
+    }
+
+    &.hide{
+        display: none;
+    }
+
+    .colorPickerAll {
+        $size: 30px;
+        display: flex;
+        width: 250px;
+        height: $size+6;
+        padding: 4px 4px;
+        border: 1px solid #777;
+        border-radius: $size;
+        align-items: center;
+        justify-content:space-evenly;
+    
+        .colorPicker-wrapper {
+            // position: fixed;
+            // top: 10px;
+            // left: 10px;
+            background-color: #9dc7ca;
+            height: $size;
+            width: $size;
+            border-radius: 50%;
+            border: 1px #777 solid;
+            z-index: 110;
+            .colorPicker {
+                width: $size;
+                height: $size;
+                border: none;
+                background: none;
+                padding: 0;
+                border-radius: $size;
+                opacity: 0;
+                z-index: 111;
+            }
+        }
+    }
+
+    h5 {
+        margin: 10px 0px 0px 0px;
+    }
+
+    table {
+        font-size: 0.7rem;
+        width: 100%;
+        margin-top: 0;
+
+        tbody td:first-of-type{
+            font-size: 0.9rem;
+        }
+
+        tr {
+            margin: 0;
+            padding: 0;
+        }
+        .projectSettingsTagName {
+            width: 60px;
+            font-size: inherit;
+        }
+        .projectSettingsTagHTML {
+            width: 230px;
+            font-size: inherit;
+        }
+    }
+
+}
+#themeSettingsModal {
+    width: 350px;
+    text-align: center;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        > div {
+            margin-bottom: 10px;
+        }
+    }
+
+    &.hide{
+        display: none;
+    }
+
+    .colorPickerAll {
+        $size: 30px;
+        display: flex;
+        flex-direction: column;
+        // width: 250px;
+        // height: $size+6;
+        // padding: 4px 4px;
+        // border: 1px solid #777;
+        // border-radius: $size;
+        align-items: flex-start;
+        justify-content:space-evenly;
+
+        .themeColor {
+            display: flex;
+            margin: 5px 0px;
+
+            label {
+                margin: 0px 10px;
+            }
+        }
+    
+        .colorPicker-wrapper {
+            // position: fixed;
+            // top: 10px;
+            // left: 10px;
+            background-color: #9dc7ca;
+            height: $size;
+            width: $size;
+            border-radius: 50%;
+            border: 1px #777 solid;
+            z-index: 110;
+            // margin-right: 10px;
+            .colorPicker {
+                width: $size;
+                height: $size;
+                border: none;
+                background: none;
+                padding: 0;
+                border-radius: $size;
+                opacity: 0;
+                z-index: 111;
+            }
+
+        }
+    }
+}
+
+#infoModal {
+    width: 700px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    font-size: 0.9rem;
+    &.hide {
+        display: none;
+    }
+
+    p {
+        padding: 10px 20px;
+        margin: 5px;
+        text-align: justify;
+    }
+
+    hr {
+        // border: 1px solid #aaa;
+        width: 90%;
+    }
+    
+    h5 {
+        margin: 3px 0px;
+    }
+
+    ul {
+        margin: 3px 0px;
+        list-style-type: none;
+
+        i {
+            margin: 0px 5px;
+        }
+
+        a {
+            text-decoration: underline;
+            color: black;
+        }
+
+        li {
+            text-align: left;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+
+.hide {
+    display: none;
+}
