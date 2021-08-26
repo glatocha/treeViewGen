@@ -20,8 +20,6 @@ body {
 }
 
 .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -33,16 +31,9 @@ body {
   height: 100vh;
   background-color: var(--menu-bgColor);
   z-index: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   padding: 8px 0px;
   color: var(--nav-iconColor);
 }
@@ -69,9 +60,7 @@ body {
   cursor: pointer;
 }
 .left-nav > i:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-  -webkit-transition: scale 0.3s ease-in;
+  transform: scale(1.1);
   transition: scale 0.3s ease-in;
 }
 .left-nav hr {
@@ -90,16 +79,10 @@ body {
   left: 70px;
   width: calc(100% - 70px);
   text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   height: 30px;
   background-color: rgba(0, 0, 0, 0.1);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   align-items: center;
   z-index: 1;
@@ -128,8 +111,7 @@ body {
   border-radius: 10px;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 101;
 }
 .modal input {
@@ -145,16 +127,13 @@ body {
   border-radius: 5px;
   background-color: #eee;
   outline: none;
-  -webkit-box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   max-width: 100px;
   margin-top: 10px;
 }
 .modal button:hover {
-  -webkit-transform: scale(1.03);
-          transform: scale(1.03);
-  -webkit-transition: scale 0.3 ease-in;
+  transform: scale(1.03);
   transition: scale 0.3 ease-in;
 }
 .modal .closeWindow {
@@ -182,34 +161,18 @@ body {
   width: 350px;
   text-align: center;
   padding-bottom: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 #editTreeItemModal.hide {
   display: none;
 }
 #editTreeItemModal form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 #editTreeItemModal form > div {
   margin-bottom: 10px;
@@ -225,11 +188,8 @@ body {
 }
 #editTreeItemModal .flags {
   padding: 0px 3%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-bottom: 0;
 }
 #editTreeItemModal .flags > * {
@@ -271,36 +231,23 @@ body {
   top: 11px;
   left: 20px;
   position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 135px;
   height: 19px;
   border: 1px solid #777;
   border-radius: 0px 15px 15px 0px;
   padding-left: 11px;
   background-color: #ddd;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
-  -webkit-transform-origin: left;
-          transform-origin: left;
-  -webkit-transition: all 0.2s ease-in;
+  transform: scaleX(0);
+  transform-origin: left;
   transition: all 0.2s ease-in;
   z-index: 109;
 }
 #editTreeItemModal .colorPicker-tray.show {
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
+  transform: scaleX(1);
 }
 #editTreeItemModal .colorPicker-tray .colorPickerTemplate {
   width: 15px;
@@ -320,28 +267,14 @@ body {
   width: 350px;
   text-align: center;
   padding-bottom: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 #projectSettingsModal form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 #projectSettingsModal form > div {
   margin-bottom: 10px;
@@ -350,20 +283,14 @@ body {
   display: none;
 }
 #projectSettingsModal .colorPickerAll {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 250px;
   height: 36px;
   padding: 4px 4px;
   border: 1px solid #777;
   border-radius: 30px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-evenly;
 }
 #projectSettingsModal .colorPickerAll .colorPicker-wrapper {
   background-color: #9dc7ca;
@@ -411,28 +338,14 @@ body {
   width: 350px;
   text-align: center;
   padding-bottom: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 #themeSettingsModal form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 #themeSettingsModal form > div {
   margin-bottom: 10px;
@@ -441,23 +354,12 @@ body {
   display: none;
 }
 #themeSettingsModal .colorPickerAll {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
 }
 #themeSettingsModal .colorPickerAll .themeColor {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin: 5px 0px;
 }
@@ -486,19 +388,10 @@ body {
 #infoModal {
   width: 700px;
   text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding-bottom: 10px;
   font-size: 0.9rem;
 }
@@ -536,6 +429,11 @@ body {
   display: none;
 }
 
+@media print {
+  .left-nav {
+    display: none;
+  }
+}
 .tree-container {
   margin: 40px 0px 200px 90px;
   list-style-type: none;
@@ -605,15 +503,9 @@ body {
   min-width: 100px;
   max-width: 300px;
   width: 220px;
-  -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   position: relative;
 }
 .tree-item-label.ob {
@@ -659,12 +551,8 @@ body {
   border-top: 1px solid var(--secondary-color);
   padding: 2px 5px;
   /* display: flex; */
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   line-height: 0.7rem;
   font-size: 0.9rem;
   position: relative;
@@ -686,22 +574,15 @@ body {
 .tree-item-label .extra-buttons .editBtn {
   position: absolute;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .tree-item-label .extra-buttons i {
   cursor: pointer;
 }
 .tree-item-label .flags {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: wrap;
   position: absolute;
   background: none;
   margin-left: 5px;
@@ -711,17 +592,11 @@ body {
   color: var(--flags-color);
 }
 .tree-item-label .flags div {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   max-height: 33%;
   margin: 2px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 .tree-item-label .flags i {
   margin: 2px;
@@ -745,4 +620,10 @@ body {
 .tree-master > .tree-item-label > .extra-buttons .addSiblingBtn,
 .tree-master > .tree-item-label > .extra-buttons .removeBtn {
   display: none;
+}
+
+@media print {
+  .tree-container {
+    margin: 40px 0px 0px 20px;
+  }
 }/*# sourceMappingURL=treeStyle.css.map */

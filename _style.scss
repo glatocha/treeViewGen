@@ -505,3 +505,10 @@ body {
 .hide {
     display: none;
 }
+
+
+@media print {
+    .left-nav {
+        display: none;
+    }   
+}

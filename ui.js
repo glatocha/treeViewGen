@@ -272,6 +272,25 @@ themeSetting_UpdateBtn.addEventListener('click', e => {
     documentChanged();
 });
 
+themeSetting_CSSCopyBtn.addEventListener('click', e => {
+    e.preventDefault();
+    var cssText = '';
+    cssText += `--background-color: "${themeSettingsModal.querySelector('#thSetBGColor').value}";\n`;
+    cssText += `--primary-color: "${themeSettingsModal.querySelector('#thSetPrimColor').value}";\n`;
+    cssText += `--secondary-color: "${themeSettingsModal.querySelector('#thSetSeColor').value}";\n`;
+    cssText += `--tree-lines-color: "${themeSettingsModal.querySelector('#thSetTLColor').value}";\n`;
+    cssText += `--menu-bgColor: "${themeSettingsModal.querySelector('#thSetNavBGColor').value}";\n`;
+    cssText += `--nav-iconColor: "${themeSettingsModal.querySelector('#thSetNavColor').value}";\n`;
+    cssText += `--flags-color: "${themeSettingsModal.querySelector('#thSetFlagColor').value}";`;
+
+    var tempInput = document.createElement("textarea");
+    tempInput.value = cssText;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+});
+
 //########### END OF Theme settings modal
 
 

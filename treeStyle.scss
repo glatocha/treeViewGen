@@ -227,4 +227,8 @@
     display: none;
 }
 
-
+@media print {
+    .tree-container {
+        margin: 40px 00px 0px 20px;
+    }    
+}

@@ -9,12 +9,11 @@ interesting icons to consider:
 
 
 TODO
-copy CSS to clipboard from theme settings
-create the info page
+Add message before closing the browser if there is a not saved state
+Add serach function, that should search also in the comments
 clean up js, split files? - 20%
 copying cutting, duplicating, selecting the node
 Add bootstrap for nav, modal etc. - ???
-Edit the name of the tree - CANCELLED
 Open as new tree - ??
 Right side Edit panel? or Modal
 notes section
@@ -30,6 +29,9 @@ convert everything to electron
 publish online
 
 DONE:
+copy CSS to clipboard from theme settings - DONE
+Edit the name of the tree - CANCELLED
+create the info page - DONE
 saving project parameters - DONE
 favicon - DONE
 Collapse all children - DONE
