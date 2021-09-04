@@ -1,4 +1,24 @@
+// MIT License
 
+// Copyright (c) [2021] [Grzegorz Latocha glatocha@gmail.com]
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 
 var projectSettings = {
     customFlags: [
@@ -28,7 +48,7 @@ var projectSettings = {
         },
         {
             name: "discuss",
-            htmlTag: '<i class="far fa-comments"></i>'
+            htmlTag: '<i class="fab fa-weixin"></i>'
         },
         {
             name: "female",
@@ -62,6 +82,7 @@ const fileNameContainer = document.getElementById('file-name');
 
 var edited = false; //this is set whenever any modification is done. Cleared when saved
 var fileOpened = false;
+
 
 appInit();
 
@@ -187,6 +208,20 @@ function createTreeItem(itemData = null, master = false) {
     labelEl.title = `${itemData.notes}`;
     labelEl.style.backgroundColor = itemData.bgColor;
     labelEl.dataset.flags = itemData.flags;
+    labelEl.addEventListener('click', (e) => {
+        if (e.ctrlKey) {
+            labelEl.classList.toggle('selected');
+            if (labelEl.classList.contains('selected')) {
+                selectedItem = labelEl.parentElement;
+                document.querySelectorAll('.tree-item-label').forEach(i => i.classList.remove('selected'));
+                labelEl.classList.add('selected');
+                displaySelectedMenu();
+            } else {
+                selectedItem = null;
+                hideSelectedMenu();
+            }
+        }
+    })
 
     const buttonsEl = document.createElement('div')
     buttonsEl.classList.add('extra-buttons')
@@ -229,7 +264,7 @@ function createTreeItem(itemData = null, master = false) {
     return domEl
 }
 
-function addChild(parentEl, element = null, children = null) {
+function addChild(parentEl, element = null, paste = false) {
     documentChanged();
 
     //console.log('parentEl :>> ', parentEl);
@@ -237,14 +272,16 @@ function addChild(parentEl, element = null, children = null) {
         const ulEl = parentEl.getElementsByTagName('ul')[0]
         //console.log('ulEl :>> ', ulEl);
         const newEl = createTreeItem(element);
-        newEl.querySelector('.tree-item-label').style.backgroundColor = parentEl.querySelector('.tree-item-label').style.backgroundColor;
+        if (paste === false)
+            newEl.querySelector('.tree-item-label').style.backgroundColor = parentEl.querySelector('.tree-item-label').style.backgroundColor;
         ulEl.insertBefore(newEl, ulEl.firstChild);
         // ulEl.appendChild(createTreeItem(element))
     } else {
         parentEl.classList.add('tree-parent');
         const ulEl = parentEl.getElementsByTagName('ul')[0]
         const newEl = createTreeItem(element);
-        newEl.querySelector('.tree-item-label').style.backgroundColor = parentEl.querySelector(".tree-item-label").style.backgroundColor;
+        if (paste === false)
+            newEl.querySelector('.tree-item-label').style.backgroundColor = parentEl.querySelector(".tree-item-label").style.backgroundColor;
         ulEl.appendChild(newEl);
         //parentEl.appendChild(ulEl)
     }
@@ -267,7 +304,6 @@ function removeItem(itemToRemove) {
         }
         //console.log('childCount :>> ', childCount);
         itemToRemove.remove();
-
         documentChanged();
     }
 }
@@ -335,6 +371,11 @@ function grabDOMtoJSON(topElement) {
 }
 
 function newDocument() {
+    if (edited) {
+        if (!confirm("You have not saved changes, are you sure to start new project?")) {
+            return
+        }
+    }
     document.getElementById('tree_container').innerHTML = ''
     document.getElementById('tree_container').appendChild(createTreeItem(null, true));
     fileOpened = false;
@@ -346,7 +387,8 @@ function saveToLocalStorage(saveName = null) {
     if (fileOpened) {
         saveName = fileNameContainer.innerText;
     } else {
-        var saveName = prompt("Enter save name")
+        var saveName = prompt("Enter save name");
+        console.log('saveName :>> ', saveName);
     }
     const projectObject = {
         settings: '',

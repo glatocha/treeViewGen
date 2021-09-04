@@ -63,7 +63,54 @@ body {
   transform: scale(1.1);
   transition: scale 0.3s ease-in;
 }
+.left-nav i.rotate {
+  transform: rotate(-90deg);
+}
+.left-nav i.rotate:hover {
+  transform: rotate(-90deg) scale(1.1);
+  transition: scale 0.3s ease-in;
+}
 .left-nav hr {
+  color: violet;
+  width: 100%;
+}
+
+.right-panel {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 70px;
+  height: 100vh;
+  background-color: var(--menu-bgColor);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0px;
+  color: var(--nav-iconColor);
+}
+.right-panel .selNavBtn {
+  margin: 10px 0px;
+  font-size: 45px;
+  text-align: center;
+  cursor: pointer;
+}
+.right-panel .selNavBtn:hover {
+  transform: scale(1.1);
+  transition: scale 0.3s ease-in;
+}
+.right-panel .selNavBtn > i {
+  position: relative;
+}
+.right-panel .selNavBtn > i > i {
+  position: absolute;
+  font-size: 20px;
+  color: var(--menu-bgColor);
+  right: 2px;
+  bottom: 2px;
+  text-align: center;
+}
+.right-panel hr {
   color: violet;
   width: 100%;
 }
@@ -185,6 +232,8 @@ body {
   resize: vertical;
   min-height: 200px;
   background-color: #eee;
+  font-family: inherit;
+  font-size: 0.8rem;
 }
 #editTreeItemModal .flags {
   padding: 0px 3%;
@@ -211,34 +260,34 @@ body {
   top: 10px;
   left: 10px;
   background-color: #9dc7ca;
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   border: 1px #777 solid;
   z-index: 110;
 }
 #editTreeItemModal .colorPicker-wrapper .colorPicker {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border: none;
   background: none;
   padding: 0;
-  border-radius: 20px;
+  border-radius: 30px;
   opacity: 0;
   z-index: 111;
 }
 #editTreeItemModal .colorPicker-tray {
-  top: 11px;
+  top: 10px;
   left: 20px;
   position: fixed;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 135px;
-  height: 19px;
+  width: 212.5px;
+  height: 29px;
   border: 1px solid #777;
-  border-radius: 0px 15px 15px 0px;
+  border-radius: 0px 25px 25px 0px;
   padding-left: 11px;
   background-color: #ddd;
   transform: scaleX(0);
@@ -250,12 +299,12 @@ body {
   transform: scaleX(1);
 }
 #editTreeItemModal .colorPicker-tray .colorPickerTemplate {
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   border: 1px solid #777;
   background: pink;
   padding: 0;
-  border-radius: 15px;
+  border-radius: 25px;
   margin: 2px;
   cursor: pointer;
 }
@@ -384,6 +433,11 @@ body {
   opacity: 0;
   z-index: 111;
 }
+#themeSettingsModal #themeSetting_CSSCopyBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
 
 #infoModal {
   width: 700px;
@@ -425,13 +479,66 @@ body {
   font-size: 0.8rem;
 }
 
+#promptModal {
+  width: 350px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#promptModal .prompt-class,
+#promptModal .alert-class,
+#promptModal .confirm-class {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#promptModal .prompt-class.hide,
+#promptModal .alert-class.hide,
+#promptModal .confirm-class.hide {
+  display: none;
+}
+#promptModal.hide {
+  display: none;
+}
+#promptModal form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 0;
+}
+#promptModal form input {
+  width: 100%;
+}
+#promptModal form .btn {
+  margin: 5px 0px 0px 0px;
+}
+#promptModal h5 {
+  margin: 0px;
+}
+
 .hide {
   display: none;
 }
 
 @media print {
-  .left-nav {
+  .right-panel,
+.left-nav {
     display: none;
+  }
+
+  body {
+    background-color: unset;
+  }
+
+  .top-header {
+    background-color: unset;
   }
 }
 .tree-container {
@@ -507,6 +614,13 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+}
+.tree-item-label.selected {
+  border: red 1px dashed;
+  opacity: 0.5;
+}
+.tree-item-label:focus {
+  outline: none;
 }
 .tree-item-label.ob {
   background-color: var(--OB-color);
@@ -625,5 +739,21 @@ body {
 @media print {
   .tree-container {
     margin: 40px 0px 0px 20px;
+  }
+
+  .tree-master ul,
+.tree-item ul {
+    list-style-type: none;
+    margin: 0px 0px 0px 30px;
+    padding: 0;
+    position: relative;
+  }
+  .tree-master ul .tree-item-label::before,
+.tree-item ul .tree-item-label::before {
+    border-color: #777;
+  }
+
+  .tree-parent ul > li::before {
+    border-color: #777;
   }
 }/*# sourceMappingURL=treeStyle.css.map */

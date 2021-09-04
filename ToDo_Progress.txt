@@ -9,26 +9,31 @@ interesting icons to consider:
 
 
 TODO
-Add message before closing the browser if there is a not saved state
+Add protection before new file if previous not saved
+Add diferent color for the item that is currently copied
+Add possibility to change the tree from vertical to horizontal
+Add possibility to update the item colors after changing project colors
 Add serach function, that should search also in the comments
+Add custom alert, prompt, confirm
+Add message before closing the browser if there is a not saved state
 clean up js, split files? - 20%
-copying cutting, duplicating, selecting the node
-Add bootstrap for nav, modal etc. - ???
 Open as new tree - ??
-Right side Edit panel? or Modal
 notes section
 export to pdf?
-select item
-move item
-clone item
 one button to hide extra-buttons - for clarification
-printing, hide panels
-establish Git
-general theme editing - https://www.w3schools.com/css/css3_variables_javascript.asp
 convert everything to electron
-publish online
 
 DONE:
+publish online - DONE
+establish Git - DONE
+general theme editing - https://www.w3schools.com/css/css3_variables_javascript.asp - DONE
+printing, hide panels - DONE
+select item - DONE
+move item - DONE
+clone item - DONE
+Right side selection nav panel - DONE
+copying cutting, duplicating, selecting the node - DONE
+Add bootstrap for nav, modal etc. - CANCELLED
 copy CSS to clipboard from theme settings - DONE
 Edit the name of the tree - CANCELLED
 create the info page - DONE

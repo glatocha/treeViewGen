@@ -90,9 +90,14 @@
     flex-direction: column;
     position: relative;
 
-    // &:focus {
-    //     outline: black auto 1px;
-    // }
+    &.selected {
+        border: red 1px dashed;
+        opacity: 0.5;
+    }
+
+    &:focus {
+        outline: none;
+    }
 
     &.ob {
         background-color: var(--OB-color);
@@ -231,4 +236,24 @@
     .tree-container {
         margin: 40px 00px 0px 20px;
     }    
+
+    .tree-master ul,
+    .tree-item ul {
+        @include tree-ul;
+        // styling the tree branch horizontal line and rounded
+        .tree-item-label::before {
+            border-color: #777;
+            // border-left: var(--tree-lines-color) 1px solid;
+            // border-bottom: var(--tree-lines-color) 1px solid;
+        }
+    }
+    .tree-parent {
+        // styling the tree branch vertical lines
+        ul > li {
+            &::before{
+                border-color: #777;
+                // border-left: var(--tree-lines-color) 1px solid;
+            }    
+        }
+    }
 }

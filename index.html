@@ -31,6 +31,11 @@
             <hr>
             <i title="Settings" id="settingsBtn" class="fas fa-sliders-h"></i>
             <hr>
+            <i title="Horizontal Tree" id="treeHorBtn" class="fas fa-sitemap"></i>
+            <i title="Vertical Tree" id="treeVorBtn" class="fas fa-sitemap rotate"></i>
+            <!-- <i title="Horizontal Tree" id="treeHorBtn"><img style="fill:#777" src="img/sitemap.svg"></i>
+            <i title="Vertical Tree" id="vertHorBtn"><img src="img/TreeIcon.svg"></i> -->
+            <hr>
             <i title="Project info and credits" id="navInfoBtn" class="fas fa-question-circle"></i>
             <hr>
             <span class="warning-section hide" id="warningSection">
@@ -46,8 +51,22 @@
 
             </ul>
         </div>
-        <div class="right-panel">
-
+        <div class="right-panel hide">
+            <div title="Copy" class="selNavBtn" id="selNavCopy"><i class="fas fa-copy"></i></div>
+            <div title="Copy without childres" class="selNavBtn" id="selNavCopySingle"><i class="fas fa-copy"><i
+                        class="fas fa-times"></i></i></div>
+            <div title="Cut" class="selNavBtn" id="selNavCut"><i class="fas fa-cut"></i></div>
+            <hr>
+            <div title="Paste as child" class="selNavBtn" id="selNavPasteChild"><i class="fas fa-paste"><i
+                        class="fas fa-ellipsis-h"></i></i></div>
+            <div title="Paste as sibling" class="selNavBtn" id="selNavPasteSibling"><i class="fas fa-paste"><i
+                        class="fas fa-ellipsis-v"></i></i></div>
+            <hr>
+            <div title="Move Up" class="selNavBtn" id="selNavMoveUp"><i class="fas fa-arrow-up"></i></div>
+            <div title="Move Down" class="selNavBtn" id="selNavMoveDown"><i class="fas fa-arrow-down"></i></div>
+            <hr>
+            <div title="Deselect all" class="selNavBtn" id="selNavDeselect"><i class="fas fa-times"></i></div>
+            <hr>
         </div>
     </div>
 
@@ -331,11 +350,43 @@
         </div>
         <form>
             <button class="btn" id="themeSetting_UpdateBtn">Update</button>
-            <button class="btn" id="themeSetting_CSSCopyBtn">CSS to Clipboard</button>
-            <textarea class="" id="themeSettings_hiddenTextArea"></textarea>
+            <button class="btn" title="Copy CSS to the clipboard" id="themeSetting_CSSCopyBtn"><i
+                    class="fas fa-clipboard"></i></button>
         </form>
     </div>
     <!-- END OF MODAL 5 - Theme settings... -->
+
+    <!-- MODAL 6 -  -->
+    <!-- I put all three of these modals into one modal, calling functions will hide the particular options -->
+    <!-- This was experimental but it will not work in a standard way just to replace browser promts need more thoughts into it -->
+    <div class="modal hide" id="promptModal">
+        <div class="prompt-class">
+            <h5>Enter file name</h5>
+            <form>
+                <input type="text" id="promptModal_InputText">
+                <div class="btns">
+                    <button class="btn" id="promptModal_PrYesBtn">OK</button>
+                    <button class="btn" id="promptModal_PrCancelBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <div class="alert-class">
+            <h5>Beware!!</h5>
+            <form>
+                <button class="btn" id="promptModal_OKBtn">OK</button>
+            </form>
+        </div>
+        <div class="confirm-class">
+            <h5>Are you sure</h5>
+            <form>
+                <div class="btns">
+                    <button class="btn" id="promptModal_CoYesBtn">Yes</button>
+                    <button class="btn" id="promptModal_CoNoBtn">No</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- END OF MODAL 6 -  -->
 
     <script src="def_tree.js"></script>
     <script src="tree.js"></script>

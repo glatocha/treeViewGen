@@ -1,3 +1,25 @@
+// MIT License
+
+// Copyright (c) [2021] [Grzegorz Latocha glatocha@gmail.com]
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 //main left nav buttons
 const navOpenBtn = document.getElementById("navOpenBtn");
 const navUploadBtn = document.getElementById("navUploadBtn");
@@ -346,3 +368,145 @@ function init_uploadJSON() {
 
 }
 
+function displaySelectedMenu() {
+    document.querySelector('.right-panel').classList.remove('hide');
+}
+function hideSelectedMenu() {
+    document.querySelector('.right-panel').classList.add('hide');
+}
+// Right panel menu
+const selNavCopy = document.getElementById('selNavCopy');
+const selNavCopySingle = document.getElementById('selNavCopySingle');
+const selNavCut = document.getElementById('selNavCut');
+const selNavPasteChild = document.getElementById('selNavPasteChild');
+const selNavPasteSibling = document.getElementById('selNavPasteSibling');
+const selNavMoveUp = document.getElementById('selNavMoveUp');
+const selNavMoveDown = document.getElementById('selNavMoveDown');
+const selNavDeselect = document.getElementById('selNavDeselect');
+
+var selectedItem;   //store the actual selected item
+var copiedItem;
+var copySingle = false;
+var itemToBeCut = false; //this is set when the cut button is pressed instead of copy
+
+selNavCopy.addEventListener('click', (e) => {
+    copiedItem = selectedItem;
+    itemToBeCut = false;
+    copySingle = false;
+})
+
+selNavCopySingle.addEventListener('click', (e) => {
+    copiedItem = selectedItem;
+    itemToBeCut = false;
+    copySingle = true;
+})
+
+selNavCut.addEventListener('click', (e) => {
+    if (selectedItem.classList.contains('tree-master')) {
+        alert("You can't cut the master element");
+    } {
+        copiedItem = selectedItem;
+        itemToBeCut = true;
+        copySingle = false;
+    }
+})
+
+selNavPasteChild.addEventListener('click', (e) => {
+    if (copiedItem != null && selectedItem != null) {
+        var items = grabDOMtoJSON(copiedItem);
+        if (copySingle)
+            items.children = [];
+        console.log('items :>> ', items);
+        newItem = addItems(items);
+        if (copySingle)
+            newItem.classList.remove("tree-parent");
+        selectedItem.querySelector('ul').appendChild(newItem);
+        selectedItem.classList.add('tree-parent');
+        if (itemToBeCut) {
+            //check if that was the last child from the parent
+            console.log('no of childrer :>> ', copiedItem.parentElement.children.length);
+            if (copiedItem.parentElement.children.length === 1) {
+                copiedItem.parentElement.parentElement.classList.remove('tree-parent');
+            }
+            copiedItem.remove();
+            itemToBeCut = false;
+        }
+    }
+})
+
+selNavPasteSibling.addEventListener('click', (e) => {
+    if (copiedItem != null && selectedItem != null) {
+        var items = grabDOMtoJSON(copiedItem);
+        if (copySingle)
+            items.children = [];
+        console.log('items :>> ', items);
+        newItem = addItems(items);
+        if (copySingle)
+            newItem.classList.remove("tree-parent");
+        selectedItem.parentElement.parentElement.querySelector('ul').insertBefore(newItem, selectedItem.nextSibling);
+        if (itemToBeCut) {
+            copiedItem.remove();
+            itemToBeCut = false;
+        }
+    }
+})
+
+selNavMoveUp.addEventListener('click', (e) => {
+    selectedItem.parentElement.parentElement.querySelector('ul').insertBefore(selectedItem, selectedItem.previousSibling)
+})
+
+selNavMoveDown.addEventListener('click', (e) => {
+    selectedItem.parentElement.parentElement.querySelector('ul').insertBefore(selectedItem, selectedItem.nextSibling.nextSibling)
+})
+
+selNavDeselect.addEventListener('click', (e) => {
+    document.querySelectorAll('.tree-item-label').forEach(i => i.classList.remove('selected'));
+    selectedItem = null;
+    hideSelectedMenu();
+})
+
+
+// This was an attempts to create a custom promt functionality
+// Problem with that is that the browser basically stops executing anythin before user responds
+// this is not possible to achieve here. 
+// Possible functionality can be done with call back but the place where it is used needs to be rewritted as well
+// Normal way
+// variable = prompt("text")
+// do somthing with the value
+//
+// New way
+// prompt_GL("text", (variable) => {
+//   do something with the value    
+// })
+// 
+//
+//
+// function confirm_GL() {
+//     console.log('this is self written confirm function');
+// }
+// function prompt_GL(text, callback) {
+//     const modalEl = document.getElementById("promptModal");
+//     modalEl.querySelector('.prompt-class').classList.remove("hide");
+//     modalEl.querySelector('.alert-class').classList.add("hide");
+//     modalEl.querySelector('.confirm-class').classList.add("hide");
+//     modalEl.querySelector('h5').innerText = text;
+//     modalEl.classList.remove('hide');
+//     document.getElementById('promptModal_InputText').focus();
+
+//     var returnValue;
+//     document.getElementById('promptModal_PrYesBtn').addEventListener('click', (e) => {
+//         e.preventDefault();
+//         modalEl.classList.add('hide');
+//         returnValue = document.getElementById('promptModal_InputText').value;
+//         callback(returnValue);
+//     })
+//     document.getElementById('promptModal_PrCancelBtn').addEventListener('click', (e) => {
+//         e.preventDefault();
+//         modalEl.classList.add('hide');
+//         returnValue = null;
+//         callback(returnValue);
+//     })
+// }
+// function alert_GL() {
+//     console.log('this is self written confirm function');
+// }
