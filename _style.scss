@@ -137,7 +137,8 @@ body {
 }
 
 .central-panel {
-    width: 100%;
+    left: 70px;
+    width: calc(100% - 140px);
     position: relative;
 }
 

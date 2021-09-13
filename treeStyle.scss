@@ -14,9 +14,76 @@
     list-style-type: none;
     padding: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
 
     ul {
         @include tree-ul;
+    }
+
+    &.horizontal {
+        // justify-content: center;
+        align-items: center;
+        margin-left: 150px;
+        overflow-y: visible;
+
+        .tree-master,
+        .tree-item {
+            display: flex;
+            flex-direction: column;
+            .tree-item-label {
+                align-self: center;
+                margin-top: 15px;
+                margin-right: 60px;
+            }
+        }
+        ul {
+            display: flex;
+            // transform: translateX(calc(-50% + 110px));
+            li::before {
+                position: absolute;
+                content: '';
+                border-top: 1px solid var(--tree-lines-color);
+                width: 100%;
+                top: 5px;
+                z-index: -1;    
+                left: 0px;
+                height: 0px;
+            }
+            li:first-of-type:before {
+                position: absolute;
+                content: '';
+                border-top: 1px solid var(--tree-lines-color);
+                border-left: 1px solid var(--tree-lines-color);
+                border-top-left-radius: 5px;
+                width: calc(100% - 20px);
+                left: 20px;
+                height: 10px;
+                top: 5px;
+                z-index: -1;    
+            }
+            li:last-of-type:before {
+                position: absolute;
+                content: '';
+                border-top: 1px solid var(--tree-lines-color);
+                border-right: 1px solid var(--tree-lines-color);
+                border-left: none;
+                border-top-right-radius: 5px;
+                width: 20px;
+                height: 10px;
+                left: 0px;
+                top: 5px;
+                z-index: -1;    
+            }
+            .tree-item-label::before {
+                content: '';
+                border: none;
+            }
+        }
+        ul::before{
+            content: '';
+            border: none;
+        }
     }
 }
 

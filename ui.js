@@ -26,6 +26,8 @@ const navUploadBtn = document.getElementById("navUploadBtn");
 const navDownloadBtn = document.getElementById("navDownloadBtn");
 const navInfoBtn = document.getElementById("navInfoBtn");
 const settingsBtn = document.getElementById("settingsBtn");
+const treeHorBtn = document.getElementById('treeHorBtn');
+const treeVerBtn = document.getElementById('treeVerBtn');
 
 navOpenBtn.addEventListener('click', loadFileModal_Open);
 navInfoBtn.addEventListener('click', infoModal_Open)
@@ -40,6 +42,11 @@ settingsBtn.addEventListener('click', (e) => {
 });
 navDownloadBtn.addEventListener('click', init_downloadJSON);
 navUploadBtn.addEventListener('click', init_uploadJSON);
+treeHorBtn.addEventListener('click', (e) => { document.getElementById('tree_container').classList.add('horizontal') });
+treeVerBtn.addEventListener('click', (e) => { document.getElementById('tree_container').classList.remove('horizontal') });
+
+
+
 
 // ON Scrolling - put top nav solid
 window.addEventListener('scroll', () => {
